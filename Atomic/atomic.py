@@ -13,7 +13,13 @@ from Atomic.backends._docker_errors import NoDockerDaemon, DockerObjectNotFound
 from docker.errors import NotFound
 from .discovery import RegistryInspect, RegistryInspectError
 
+
+
 def find_repo_tag(d, Id, image_name):
+    
+    # The image_in_repotags function fetches the name of the image inside the "repotag" repository, and if it finds,
+    # returns the name of the image, or image list.
+
     def image_in_repotags(image_name, repotags):
         if image_name in repotags:
             return image_name
@@ -117,6 +123,11 @@ class Atomic(object):
 
             prevstatus = status
         util.write_out("")
+
+    # If for some reason the NameError or AtributeError class appears in the path, 
+    # the exception is thrown to ignore the "pass" problem. 
+    # The NameError class handles only unqualified names while AtributeError, 
+    # appears when an object does not support attribute references or assignments.
 
     def set_args(self, args):
         self.args = args
