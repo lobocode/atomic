@@ -14,10 +14,9 @@ from docker.errors import NotFound
 from .discovery import RegistryInspect, RegistryInspectError
 
 
-
 def find_repo_tag(d, Id, image_name):
     
-    # The image_in_repotags function fetches the name of the image inside the "repotag" repository, and if it finds,
+    # The image_in_repotags function fetches the name of the image inside the "repotag" repository, and if found,
     # returns the name of the image, or image list.
 
     def image_in_repotags(image_name, repotags):
@@ -124,7 +123,7 @@ class Atomic(object):
             prevstatus = status
         util.write_out("")
 
-    # If for some reason the NameError or AtributeError class appears in the path, 
+    # If for some reason the NameError or AttributeError class appears in the path, 
     # the exception is thrown to ignore the "pass" problem. 
     # The NameError class handles only unqualified names while AtributeError, 
     # appears when an object does not support attribute references or assignments.
@@ -228,6 +227,11 @@ class Atomic(object):
 
     def quote(self, args):
         return list(map(pipes.quote, args))
+
+
+    # This function cmd_env adds the atomic project environment variables within a dictionary (key and value),
+    # and reassigns some of its values as image and image name. 
+    # The goal here is to return the argument, with expanded environment variables and return new newenv.
 
     def cmd_env(self):
         newenv = dict(os.environ)
