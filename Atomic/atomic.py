@@ -228,7 +228,6 @@ class Atomic(object):
     def quote(self, args):
         return list(map(pipes.quote, args))
 
-
     # This function cmd_env adds the atomic project environment variables within a dictionary (key and value),
     # and reassigns some of its values as image and image name. 
     # The goal here is to return the argument, with expanded environment variables and return new newenv.
